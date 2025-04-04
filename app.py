@@ -1,10 +1,14 @@
 from flask import Flask, request, jsonify
 import spacy
 
-# Load your trained model
+# Load your trained NER model
 nlp = spacy.load("custom_ner_model")
 
 app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "NER API is running!"
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -27,9 +31,3 @@ def predict():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-app = Flask(__name__)
-
-@app.route('/')
-def home():
-    return "NER API is running!"
